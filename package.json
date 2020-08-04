@@ -1,0 +1,31 @@
+{
+    "private": true,
+    "name": "adyen-app",
+    "version": "1.0.0",
+    "author": "Illia Kolodiazhnyi",
+    "license": "MIT",
+    "scripts": {
+        "build": "webpack --mode:production",
+        "dev": "webpack-dev-server"
+    },
+    "devDependencies": {
+        "@typescript-eslint/eslint-plugin": "^3.8.0",
+        "@typescript-eslint/parser": "^3.8.0",
+        "eslint": "^7.6.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.20.5",
+        "eslint-plugin-react-hooks": "^4.0.8",
+        "html-webpack-plugin": "^4.3.0",
+        "prettier": "^2.0.5",
+        "remove-files-webpack-plugin": "^1.4.3",
+        "ts-loader": "^8.0.2",
+        "typescript": "^3.9.7",
+        "webpack": "^4.44.1",
+        "webpack-cli": "^3.3.12",
+        "webpack-dev-server": "^3.11.0"
+    },
+    "dependencies": {
+        "preact": "^10.4.6"
+    }
+}
