@@ -15,6 +15,7 @@ module.exports = {
     },
     resolve: {
         extensions: ['.tsx', '.ts', '.js'],
+        modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     },
     output: {
         filename: 'main.js',
@@ -22,10 +23,6 @@ module.exports = {
     },
     plugins: [
         new RemovePlugin({
-            /**
-             * Before compilation permanently removes
-             * entire `./dist` folder.
-             */
             before: {
                 folder: 'dist',
             },
