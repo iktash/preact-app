@@ -5,6 +5,7 @@ import { fetch5dayForecast } from 'api/weather';
 import { fetchLocation, fetchFlights } from 'api/flights';
 
 import state from './appState';
+import './app.scss';
 
 interface Props {}
 
