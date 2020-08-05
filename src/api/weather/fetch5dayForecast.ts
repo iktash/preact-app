@@ -24,7 +24,7 @@ type Response = ForecastDay[];
 
 export default async (locationKey: string): Promise<Response> => {
     const res = await fetch(
-        `http://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}&metric=true`,
+        `https://dataservice.accuweather.com/forecasts/v1/daily/5day/${locationKey}?apikey=${apiKey}&metric=true`,
         { mode: 'cors' },
     );
 
