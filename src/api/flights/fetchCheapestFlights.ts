@@ -1,4 +1,4 @@
-import { addDaysToDate, dateToFlightsFormat } from 'utils/date';
+import { addDaysToDate, dateToFlightsFormat, sameDay } from 'utils/date';
 
 import partnerId from './apiPartnerId';
 
@@ -14,20 +14,34 @@ interface ApiResponse {
 
 export interface Flight {
     id: string;
-    date: string;
+    date: Date;
     price: number;
 }
 
 type Response = Flight[];
 
-export default async (from: string, to: string, daysInFuture: number = 25): Promise<Response> => {
+const keepCheapestPerDay = (acc: Flight[], flight: Flight) => {
+    if (!acc.length) return [...acc, flight];
+
+    const lastFlight = acc[acc.length - 1];
+    if (!sameDay(lastFlight.date, flight.date)) {
+        return [...acc, flight];
+    }
+
+    if (lastFlight.price <= flight.price) {
+        return acc;
+    }
+
+    return [...acc.slice(0, -1), flight];
+};
+
+export default async (from: string, to: string, daysInFuture: number = 10): Promise<Response> => {
     const res = await fetch(
         'https://api.skypicker.com/flights?' +
             new URLSearchParams({
                 v: '3',
                 partner: partnerId,
                 flight_type: 'oneway',
-                one_per_date: '1',
                 fly_from: from,
                 fly_to: to,
                 date_from: dateToFlightsFormat(new Date()),
@@ -40,9 +54,11 @@ export default async (from: string, to: string, daysInFuture: number = 25): Prom
     if (!res.ok) return [];
 
     const { data } = (await res.json()) as ApiResponse;
-    return data.map(({ id, dTime, conversion }) => ({
-        id,
-        date: new Date(dTime * 1000).toString(),
-        price: conversion.EUR,
-    }));
+    return data
+        .map(({ id, dTime, conversion }) => ({
+            id,
+            date: new Date(dTime * 1000),
+            price: conversion.EUR,
+        }))
+        .reduce<Flight[]>(keepCheapestPerDay, []);
 };

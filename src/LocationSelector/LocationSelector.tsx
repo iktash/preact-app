@@ -15,9 +15,7 @@ const LocationSelector: FunctionalComponent<Props> = ({ exclude = [], onChange =
     const [options, setOptions] = useState<Location[]>([]);
 
     const fetchOptions = useDebounce((term: string, exclude: string[]) => {
-        fetchLocations(term, exclude).then((locations) => {
-            setOptions(locations);
-        });
+        fetchLocations(term, exclude).then(setOptions);
     });
 
     useEffect(() => {
@@ -37,7 +35,7 @@ const LocationSelector: FunctionalComponent<Props> = ({ exclude = [], onChange =
             <input
                 type="text"
                 list="locations"
-                placeholder="Start typing your current location..."
+                placeholder="Dubai or other..."
                 value={term}
                 onInput={(e) => setTerm((e.target as HTMLInputElement).value)}
                 className={inputClassName}
