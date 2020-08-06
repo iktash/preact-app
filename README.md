@@ -10,4 +10,6 @@
 -   no global state management solution, maybe Recoil or MobX
 -   more user friendly location selector
 -   it's responsive
+-   scoped CSS
+-   used BEM
 -   etc

@@ -27,7 +27,7 @@ const Flights: FunctionalComponent<Props> = ({ departureFlightKey, flightKey }) 
     const maxPrice = flights ? Math.max(...flights.map((f) => f.price)) : 0;
 
     return (
-        <section>
+        <section className="flights-container">
             <header>
                 <h1>Flight prices</h1>
             </header>

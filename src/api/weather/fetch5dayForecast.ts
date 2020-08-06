@@ -15,7 +15,7 @@ interface ApiResponse {
 }
 
 export interface ForecastDay {
-    date: string;
+    date: Date;
     minTemp: number;
     maxTemp: number;
 }
@@ -33,8 +33,8 @@ export default async (locationKey: string): Promise<Response> => {
 
     const { DailyForecasts } = (await res.json()) as ApiResponse;
 
-    return DailyForecasts.map(({ Date, Temperature }) => ({
-        date: Date,
+    return DailyForecasts.map(({ Date: d, Temperature }) => ({
+        date: new Date(d),
         minTemp: Temperature.Minimum.Value,
         maxTemp: Temperature.Maximum.Value,
     }));

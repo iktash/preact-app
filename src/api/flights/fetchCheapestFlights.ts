@@ -35,7 +35,7 @@ const keepCheapestPerDay = (acc: Flight[], flight: Flight) => {
     return [...acc.slice(0, -1), flight];
 };
 
-export default async (from: string, to: string, daysInFuture: number = 10): Promise<Response> => {
+export default async (from: string, to: string, daysInFuture: number = 15): Promise<Response> => {
     const res = await fetch(
         'https://api.skypicker.com/flights?' +
             new URLSearchParams({

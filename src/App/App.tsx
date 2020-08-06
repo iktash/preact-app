@@ -3,7 +3,6 @@ import { useState } from 'preact/hooks';
 
 import { LocationSelector } from 'LocationSelector';
 import { DestinationLocation } from 'DestinationLocation';
-import { fetch5dayForecast } from 'api/weather';
 
 import state from './appState';
 import './app.scss';
@@ -13,10 +12,6 @@ interface Props {}
 const App: FunctionalComponent<Props> = () => {
     const { weatherLocations, flightsLocations } = state;
     const [locationFrom, setLocationFrom] = useState<string | null>(null);
-
-    // fetch5dayForecast(state['Amsterdam'].weatherKey).then((forecast) => {
-    //     console.log('forecast', forecast);
-    // });
 
     return (
         <div className="container">
@@ -30,9 +25,27 @@ const App: FunctionalComponent<Props> = () => {
             </h1>
 
             <DestinationLocation
+                className="destination"
                 name={flightsLocations[0].name}
                 departureFlightKey={locationFrom}
                 flightKey={flightsLocations[0].locationKey}
+                weatherLocationKey={weatherLocations[0].locationKey}
+            />
+
+            <DestinationLocation
+                className="destination"
+                name={flightsLocations[1].name}
+                departureFlightKey={locationFrom}
+                flightKey={flightsLocations[1].locationKey}
+                weatherLocationKey={weatherLocations[1].locationKey}
+            />
+
+            <DestinationLocation
+                className="destination"
+                name={flightsLocations[2].name}
+                departureFlightKey={locationFrom}
+                flightKey={flightsLocations[2].locationKey}
+                weatherLocationKey={weatherLocations[2].locationKey}
             />
         </div>
     );
