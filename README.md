@@ -7,4 +7,5 @@
 -   cheapest, balanced, most comfortable categories for flights
 -   more data about the weather and flights
 -   no global state management solution, maybe Recoil or MobX
+-   more user friendly location selector
 -   etc

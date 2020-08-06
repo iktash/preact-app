@@ -7,22 +7,39 @@ export type LocationsState = Record<
     }
 >;
 
-const appState: LocationsState = {
-    ['Amsterdam']: {
-        name: 'Amsterdam',
-        weatherKey: '249758',
-        flightsKey: 'amsterdam_nl',
-    },
-    ['Madrid']: {
-        name: 'Madrid',
-        weatherKey: '308526',
-        flightsKey: 'madrid_es',
-    },
-    ['Budapest']: {
-        name: 'Budapest',
-        weatherKey: '187423',
-        flightsKey: 'budapest_hu',
-    },
-};
+export interface Location {
+    name: string;
+    locationKey: string;
+}
 
-export default appState;
+const weatherLocations: Location[] = [
+    {
+        name: 'Amsterdam',
+        locationKey: '249758',
+    },
+    {
+        name: 'Madrid',
+        locationKey: '308526',
+    },
+    {
+        name: 'Budapest',
+        locationKey: '187423',
+    },
+];
+
+const flightsLocations: Location[] = [
+    {
+        name: 'Amsterdam',
+        locationKey: 'amsterdam_nl',
+    },
+    {
+        name: 'Madrid',
+        locationKey: 'madrid_es',
+    },
+    {
+        name: 'Budapest',
+        locationKey: 'budapest_hu',
+    },
+];
+
+export default { weatherLocations, flightsLocations };
